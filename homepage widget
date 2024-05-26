@@ -1,0 +1,9 @@
+widget:
+  type: jellyfin
+  url: http://192.168.0.114:8096/
+  key: 38330ea5ed744ece8e78c25f93a8b7d5
+  enableBlocks: true # optional, defaults to false
+  enableNowPlaying: true # optional, defaults to true
+  enableUser: true # optional, defaults to false
+  showEpisodeNumber: true # optional, defaults to false
+  expandOneStreamToTwoRows: true # optional, defaults to true

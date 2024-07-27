@@ -9,7 +9,7 @@ services:
       - TZ=America/Chicago
       - JELLYFIN_PublishedServerUrl=192.168.0.114 #optional
     volumes:
-      - /volume1/SHARED-MULTIMEDIA/jellyfin/config:/config
+      - /volume3/docker/jellyfin/config:/config
       - /volume1/SHARED-MULTIMEDIA/TV Shows:/data/tvshows
       - /volume1/SHARED-MULTIMEDIA/Movies:/data/movies
     ports:

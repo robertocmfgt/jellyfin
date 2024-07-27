@@ -2,7 +2,7 @@
 services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
-    container_name: jellyfin
+    container_name: jellyfin-1
     environment:
       - PUID=1000
       - PGID=1000
@@ -15,6 +15,6 @@ services:
     ports:
       - 27898:8096
       - 27899:8920 #optional
-      - 7359:7359/udp #optional
-      - 1900:1900/udp #optional
+      - 7358:7359/udp #optional
+      - 1973:1900/udp #optional
     restart: unless-stopped

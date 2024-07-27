@@ -10,8 +10,8 @@ services:
       - JELLYFIN_PublishedServerUrl=192.168.0.114 #optional
     volumes:
       - /volume3/docker/jellyfin/config:/config
-      - /volume1/TV Shows:/data/tvshows
-      - /volume1/Movies:/data/movies
+      - /volume1/SHARED-MULTIMEDIA/TV Shows:/data/tvshows
+      - /volume1/SHARED-MULTIMEDIA/Movies:/data/movies
     ports:
       - 27898:8096
       - 27899:8920 #optional

@@ -1,8 +1,7 @@
 docker run -d \
  --name jellyfin \
  --user 1000:1000 \
- --volume /volume3/docker/jellyfin/config:/config \
- --volume /volume3/docker/jellyfin/cache:/cache \
- --mount type=bind,source=/volume1,target=/media \
+ --volume /config:/config \
+ --volume /cache:/cache \
  --restart=unless-stopped \
  jellyfin/jellyfin

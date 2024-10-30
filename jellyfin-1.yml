@@ -6,12 +6,12 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Etc/UTC
-      - JELLYFIN_PublishedServerUrl=192.168.0.24 # Optional published server URL
+      - TZ=America/Chicago
+      - JELLYFIN_PublishedServerUrl=192.168.0.16 # Optional published server URL
     volumes:
       - /config:/config:rw
       - /tv:/data/tvshows:ro
-      - /movies/data:/data/movies:ro
+      - /data:/data/movies:ro
     ports:
       - 8096:8096
       - 8920:8920 # Optional control port

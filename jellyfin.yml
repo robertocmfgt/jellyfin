@@ -1,0 +1,81 @@
+version: "3.9"
+
+services:
+  jellyfin:
+    # Variant 1 (DEFAULT): CPU-only transcoding
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      # Optional: publish server on your LAN (clients can discover it more reliably)
+      # - JELLYFIN_PublishedServerUrl=http://192.168.0.160
+    volumes:
+      # App data (bind mounts, per your requirement)
+      - /opt/jellyfin/config:/config
+      - /opt/jellyfin/cache:/cache
+
+      # Media libraries (your NAS mounts)
+      - /mnt/nas/output:/media/output:rw
+      - /mnt/nas/output-1:/media/output-1:rw
+    ports:
+      # Jellyfin web UI / API
+      - "8096:8096"
+      # Optional HTTPS (only if you configure Jellyfin for it)
+      - "8920:8920"
+      # Optional DLNA discovery (only if you use DLNA)
+      - "1900:1900/udp"
+      - "7359:7359/udp"
+    restart: unless-stopped
+    # Limit Watchtower to ONLY this container (label-based monitoring)
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  # Variant 2 (OPTIONAL): Intel Quick Sync (uncomment this whole service and comment the one above)
+  # jellyfin:
+  #   image: lscr.io/linuxserver/jellyfin:latest
+  #   container_name: jellyfin
+  #   environment:
+  #     - PUID=${PUID}
+  #     - PGID=${PGID}
+  #     - TZ=${TZ}
+  #   volumes:
+  #     - /opt/jellyfin/config:/config
+  #     - /opt/jellyfin/cache:/cache
+  #     - /mnt/nas/output:/media/output:rw
+  #     - /mnt/nas/output-1:/media/output-1:rw
+  #   devices:
+  #     # Intel iGPU / Quick Sync
+  #     - /dev/dri:/dev/dri
+  #   ports:
+  #     - "8096:8096"
+  #     - "8920:8920"
+  #     - "1900:1900/udp"
+  #     - "7359:7359/udp"
+  #   restart: unless-stopped
+  #   labels:
+  #     - "com.centurylinklabs.watchtower.enable=true"
+
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    environment:
+      - TZ=${TZ}
+      # Enables label-based updates (only containers with the enable label get updated)
+      - WATCHTOWER_LABEL_ENABLE=true
+      # Recommended so Watchtower uses its internal scheduler
+      - WATCHTOWER_SCHEDULE=${WATCHTOWER_SCHEDULE}
+      # Optional: reduce noisy logs
+      - WATCHTOWER_NOTIFICATIONS_LEVEL=info
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command:
+      # Cleanup old images after update
+      - --cleanup
+      # Extra safety: do not touch anything without the label
+      - --label-enable
+      # Uses WATCHTOWER_SCHEDULE env var
+      - --schedule
+      - "${WATCHTOWER_SCHEDULE}"
+    restart: unless-stopped

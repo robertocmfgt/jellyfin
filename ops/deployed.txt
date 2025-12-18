@@ -1,7 +1,7 @@
-timestamp: 2025-12-18_023433
+timestamp: 2025-12-18_030903
 host: Jellyfin.netbird.cloud
-git_sha: d6918de
+git_sha: 67166c6
 
 compose ps:
 NAME       IMAGE                                 COMMAND   SERVICE    CREATED          STATUS          PORTS
-jellyfin   lscr.io/linuxserver/jellyfin:latest   "/init"   jellyfin   16 minutes ago   Up 16 minutes   0.0.0.0:1900->1900/udp, [::]:1900->1900/udp, 0.0.0.0:8096->8096/tcp, [::]:8096->8096/tcp, 0.0.0.0:7359->7359/udp, [::]:7359->7359/udp, 0.0.0.0:8920->8920/tcp, [::]:8920->8920/tcp
+jellyfin   lscr.io/linuxserver/jellyfin:latest   "/init"   jellyfin   51 minutes ago   Up 51 minutes   0.0.0.0:1900->1900/udp, [::]:1900->1900/udp, 0.0.0.0:8096->8096/tcp, [::]:8096->8096/tcp, 0.0.0.0:7359->7359/udp, [::]:7359->7359/udp, 0.0.0.0:8920->8920/tcp, [::]:8920->8920/tcp

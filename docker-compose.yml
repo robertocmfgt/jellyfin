@@ -51,7 +51,7 @@ services:
   #     - "8920:8920"
   #     - "1900:1900/udp"
   #     - "7359:7359/udp"
-  #   restart: unless-stopped
+  #   restart: always
   #   labels:
   #     - "com.centurylinklabs.watchtower.enable=true"
 

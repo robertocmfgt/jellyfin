@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   jellyfin:
     # Variant 1 (DEFAULT): CPU-only transcoding

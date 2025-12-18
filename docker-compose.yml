@@ -57,25 +57,3 @@ services:
   #   labels:
   #     - "com.centurylinklabs.watchtower.enable=true"
 
-  watchtower:
-    image: containrrr/watchtower:latest
-    container_name: watchtower
-    environment:
-      - TZ=${TZ}
-      # Enables label-based updates (only containers with the enable label get updated)
-      - WATCHTOWER_LABEL_ENABLE=true
-      # Recommended so Watchtower uses its internal scheduler
-      - WATCHTOWER_SCHEDULE=${WATCHTOWER_SCHEDULE}
-      # Optional: reduce noisy logs
-      - WATCHTOWER_NOTIFICATIONS_LEVEL=info
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command:
-      # Cleanup old images after update
-      - --cleanup
-      # Extra safety: do not touch anything without the label
-      - --label-enable
-      # Uses WATCHTOWER_SCHEDULE env var
-      - --schedule
-      - "${WATCHTOWER_SCHEDULE}"
-    restart: unless-stopped

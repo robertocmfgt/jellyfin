@@ -25,7 +25,7 @@ services:
       # Optional DLNA discovery (only if you use DLNA)
       - "1900:1900/udp"
       - "7359:7359/udp"
-    restart: unless-stopped
+    restart: always
     # Limit Watchtower to ONLY this container (label-based monitoring)
     labels:
       - "com.centurylinklabs.watchtower.enable=true"

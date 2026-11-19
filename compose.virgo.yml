@@ -1,0 +1,4 @@
+services:
+  jellyfin:
+    volumes:
+      - /mnt/virgo-media:/media/virgo:ro

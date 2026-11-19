@@ -1,0 +1,4 @@
+services:
+  jellyfin:
+    volumes:
+      - /mnt/grimsleeper-media:/media/grimsleeper:ro
